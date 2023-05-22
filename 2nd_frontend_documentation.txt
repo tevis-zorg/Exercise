@@ -1,0 +1,106 @@
+MERN Tuts frontend Workout App (netninja)
+
+READ ME FIRST!
+
+2. frontend folder
+
+        create an app called frontend using "npx create-react-app (app_name)" first of all.
+        after the app was created, tuts lead me to delete most of un important files such as
+        SVG file, app test, app.css.
+                
+        2.1 src > App.js
+
+                here where the elements are connected to inside the the react app that we created.
+                
+                2.1.1 App.js
+                
+                        imports the package "npm install react-router-dom" and begin to use it at the top of it
+                        as a dependencies,
+                
+                2.1.2 div>BrowserRouter>div.App>Routes>Route
+                
+                        inside the "Route" it contains the "path='/'" and "element={}" that we want to basically render
+                        for the "Route"
+
+        2.2 src > Pages > Home.js
+
+                Create a file called "Home.js" this for now, it just a template. with an "h1" tags and it says Home.
+
+        2.3 src > Component > NavigationBar.js
+
+                Creates the navbar that would appearts on top of all the pages. inside, we import "{Link}" package of "react-router-dom"
+                module. and this "<Link to='page_router'></Link>" is treated as an anchor tag or "<a></a>" tag by JSX.
+                
+                2.3.1 <Link></Link>
+                
+                        so the after the "<Link></Link>" tag other than treated as an "<a></a>" tag, so we don't have to
+                        make the request to the backend.(yet)
+                
+                2.1.3 app.js > function app () > div.app > <NavigationBar/>
+                
+                        Invoking "NavigationBar.js" file into "App.js" with "import NavigationBar from './components/NavigationBar'"
+                        and use it with "<NavigationBar/>" to becom a component inside it.
+
+        2.4 src > index.css
+
+                Working with the styling in this page using for now, it is just a standard styling on it.
+
+                2.2.1 Home.js > useEffect(() => {})
+                
+                        within "Home.js" we put "useEffect(() => {})" which inside it runs the "const" function called
+                        "fetchWorkout" with "asynchronous" callback funtion that returns a promise of "JSON" file from 
+                        "https://localhost:PORT/url/path" our own build API's. (look at the backend folder).
+                        
+                        NOTE: aware about the usage of the port. or it will cause CORS (Cross-Origin-Resource-Sharing)
+                
+                2.2.2 Home.js > div.workouts>{object && object.map() => ()}
+                
+                        at "Home.js" file, in this section we create a display which integrated with the "json" data that
+                        we've fetch from section "2.2.1", and this the object inside "div.workouts" looking for it to begin
+                        the "map()=>()" if the response is ok and data was fetch, it will display the specific data
+                        into the browser. else, it will return "null".
+                
+                        2.2.1.1 Home.js > useEffect(() => {}) > fetchWorkout = async() => {} > const response = await fetch('/specific/path')
+                        
+                                on this section, we chages the "await fetch(server/path/)" main path (in tuts case, it is localhost.)
+                                because the main server path already move inside "package.json > proxy(prop)" it meant to tell our react 
+                                dev server to proxy any request that is doesn't recognize to our API server at the preffered address.
+                                
+                                NOTE : it only fix the issue inside the issue during the development. for the production, we have to make
+                                        sure that every request points to the right endpoint.
+                        
+                        2.2.1.2 Home.js > useEffect(() => {}) > fetchWorkout = async() => {} > const resData = await response.json()
+                        
+                                in this section, defines a value which retrieve the data "response" into "json()" file that later on
+                                will gonna be use inside ".map() => ()" callback function to become a display of list.
+                                
+                                NOTE : neglect using the "await" promise function will cause the "Uncaught TypeError : variable.map is not a function"
+                                        the array of map is not recognized by the browser.
+                        
+                        2.2.1.3 Home.js > useEffect(() => {}) > fetchWorkout = async () => {} > const response = await fetch('url/path')
+                        
+                                using port "localhost:backend server" directly to fetch the data to the front end, will throw the error called
+                                CORS(Cross-Origin-Resource-Sharing).
+                                
+        2.5 package.json > "proxy" : "localhost port"
+        
+                here we try to correct an issued on "2.2.1.3"  we move the port address to the "package.json"
+                and add a new field called "proxy". which means it will proxy every request to the assigned port on that field.
+        
+        2.6 src > Component > WorkoutDetails.js
+        
+                create a component which displays all the workout properties on at the home page by creating a function
+                inside the file which retrieve all the properties inside the out workout database.
+                
+                2.6.1 WorkoutDetails.js > WorkoutDetailsPropsFunc = ({props}) => {}
+                
+                        made a logic of how to using props inisie the element tags, and export it.
+                
+                2.6.2 > 2.2.3 Home.js > Home = () => {} > <WorkoutDetailsComp key=? props={props}/>
+                
+                        imports "Workoutdetails.js" to "Home.js" and use the "<WorkoutDetailsComp hey=? props={props}"
+                        to invoke the function which we were created inside the "Workoutdetails.js" file.
+                
+                2.4.1 Index.css part 2
+                
+                        create the styling part 2 on the website.

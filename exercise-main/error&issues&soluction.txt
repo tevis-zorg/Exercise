@@ -1,0 +1,69 @@
+frontend errors which appears on reactjs.
+
+lsof -i (using ubuntu terminal to debug -> listen EADDRINUSE: address already in use :::4040)
+Error: connect ECONNREFUSED 127.0.0.1:4040 postman debug
+    check for the proxy and look for "use the system proxy" and unchecklist "respects" option.
+    
+    IT IS UNECESSARY IF YOU'RE USING WINDOWS!
+    
+WHILE STARTING NPM WITH "eslint-config-ract-app, base.js" still in "package.json".
+
+    [eslint] Plugin "react" was conflicted between "package.json » eslint-config-react-app » 
+    F:\documents\zip_doc\computer_science_files\mern_stacks\mern_tuts\frontend\node_modules\eslint-config-react-app\base.js" 
+    and "BaseConfig » 
+    F:\Documents\zip_Doc\Computer_science_files\MERN_Stacks\mern_tuts\frontend\node_modules\eslint-config-react-app\base.js".
+
+    & 
+
+    (These error comes from the package.json. just delete 
+    "eslintConfig": { "extends": [ "react-app", "react-app/jest" ] }"
+    stopped the runing npm, and "npm start" again)
+
+    ERROR in [eslint] Plugin "react" was conflicted between "package.json » eslint-config-react-app » 
+    F:\documents\zip_doc\computer_science_files\mern_stacks\mern_tuts\frontend\node_modules\eslint-config-react-app\base.js" 
+    and "BaseConfig » 
+    F:\Documents\zip_Doc\Computer_science_files\MERN_Stacks\mern_tuts\frontend\node_modules\eslint-config-react-app\base.js".
+
+
+CORS(Cross-Origin-Resource Sharing)
+(encountered at section 2.2.1 & 2.2.2(frontend documentation))
+
+Error:
+
+    21:52:03.543 Cross-Origin Request Blocked: The Same Origin Policy disallows reading 
+    the remote resource at https://localhost4040/api/workouts. 
+    (Reason: CORS request did not succeed). Status code: (null).
+
+    This happens while using the different server to perform a resource sharing among them.
+
+Solution:
+
+    we added the "proxy" which value is the reffered server inside "package.json" which inside our frontend folder.
+    there is another alternative or install the package called CORS and use that insdie 
+    the backend server to allow this "Cross Origin Request".
+
+
+"Uncaught TypeError : workouts.map is not a function"
+
+Error : 
+
+    00:21:07.907 Uncaught TypeError: workouts.map is not a function
+        Home Home.js:23
+        React 11
+        workLoop scheduler.development.js:266
+        flushWork scheduler.development.js:239
+        performWorkUntilDeadline scheduler.development.js:533
+        js scheduler.development.js:571
+        js scheduler.development.js:633
+        factory react refresh:6
+        Webpack 24
+    Home.js:23
+
+Explanation :
+
+    It attempted to call a value from a function, but the value is not actually a function. 
+    Some code expects you to provide a function, but that didn't happen. 
+
+Solution :
+
+    put the await promise function inside "resData" constant.
