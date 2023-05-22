@@ -1,0 +1,3 @@
+[submodule "exercise"]
+	path = exercise
+	url = git@github.com:tevis-zorg/exercise.git
